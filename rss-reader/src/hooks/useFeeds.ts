@@ -18,14 +18,22 @@ export function useFeeds() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    const [hasLoadedDefaults, setHasLoadedDefaults] = useState(false);
+
     const loadSubscriptions = useCallback(async () => {
         try {
             const feeds = await feedStorage.getFeeds();
             setSubscriptions(feeds);
+
+            // If feeds were just seeded from defaults, we should force a refresh
+            // if we don't already have articles and haven't tried yet
+            if (feeds.length > 0 && !hasLoadedDefaults) {
+                setHasLoadedDefaults(true);
+            }
         } catch (err) {
             console.error('Failed to load subscriptions', err);
         }
-    }, []);
+    }, [hasLoadedDefaults]);
 
     useEffect(() => {
         loadSubscriptions();
@@ -102,7 +110,7 @@ export function useFeeds() {
 
     useEffect(() => {
         refreshArticles();
-    }, [refreshArticles]);
+    }, [refreshArticles, hasLoadedDefaults]);
 
     return {
         subscriptions,
