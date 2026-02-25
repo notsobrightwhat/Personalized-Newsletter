@@ -1,0 +1,181 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.sidebar {
+  width: 280px;
+  background-color: var(--muted);
+  border-right: 1px solid var(--border);
+  padding: var(--spacing-xl) var(--spacing-md);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarHeader {
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebarTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.addBtn {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--foreground);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius);
+  transition: background-color 0.15s ease;
+}
+
+.addBtn:hover {
+  background-color: var(--border);
+}
+
+.feedNav {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.emptyFeedsText {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  padding: var(--spacing-md) 0;
+}
+
+.feedList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.feedListItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius);
+  transition: background-color 0.15s ease;
+}
+
+.feedListItem:hover {
+  background-color: var(--background);
+}
+
+.feedInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  overflow: hidden;
+}
+
+.feedName {
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.removeBtn {
+  color: var(--muted-foreground);
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: 0 var(--spacing-xs);
+  opacity: 0;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.feedListItem:hover .removeBtn {
+  opacity: 1;
+}
+
+.removeBtn:hover {
+  color: #ef4444;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.content {
+  width: 100%;
+  max-width: 680px;
+  padding: var(--spacing-xl) 0;
+}
+
+.feedHeader {
+  margin-bottom: var(--spacing-xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.feedTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.refreshBtn {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius);
+  transition: all 0.15s ease;
+}
+
+.refreshBtn:hover:not(:disabled) {
+  background-color: var(--muted);
+  color: var(--foreground);
+}
+
+.refreshBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.articleList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.statusText,
+.emptyStateText {
+  color: var(--muted-foreground);
+  font-size: 1rem;
+  padding: var(--spacing-xl) 0;
+}
+
+.errorMessage {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  padding: var(--spacing-md);
+  border-radius: var(--radius);
+  margin-bottom: var(--spacing-lg);
+  font-size: 0.875rem;
+}
+
+/* Dark mode overrides for error state */
+@media (prefers-color-scheme: dark) {
+  .errorMessage {
+    background-color: rgba(185, 28, 28, 0.1);
+    color: #fca5a5;
+  }
+}
